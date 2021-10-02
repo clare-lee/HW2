@@ -1,4 +1,3 @@
-// const arr = [1,2,3];
 
 // FOR EACH //
 Array.prototype.myEach = function(callbackFn) {
@@ -12,6 +11,7 @@ Array.prototype.myEach = function(callbackFn) {
 };
 
 // TEST
+// const arr = [1,2,3];
 
 // console.log("myEach: ")
 // arr.myEach( x => console.log(x) );
@@ -21,31 +21,53 @@ Array.prototype.myEach = function(callbackFn) {
 
 // MAP //
 Array.prototype.myMap = function(callbackFn) {
-    result = [];
+    arr = [];
     for (let i = 0; i < this.length; i++) {
-        result[i] = callbackFn(this[i], i, this) ;
+        arr[i] = callbackFn(this[i], i, this) ;
     }
-    return result;
+    return arr;
+};
+
+// TEST
+// const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
+
+// console.log("myMap: ")
+
+// console.log( exArr.myMap(function(callbackFn) {return callbackFn;}) )
+
+// console.log("Map: ")
+// console.log( exArr.map(function(callbackFn) {return callbackFn;}) )
+
+// FILTER //
+Array.prototype.myFilter = function(callbackFn) {
+    arr = [];
+    for (let i = 0; i < this.length; i++) {
+        if( callbackFn(this[i]) ) {
+            arr[i] = this[i] ;
+        }
+    }
+    return arr;
 };
 
 // TEST
 const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
 
-console.log("myMap: ")
+console.log("myFilter: ")
+console.log( exArr.myFilter(function(callbackFn) {return callbackFn.length < 8;}) )
 
-console.log( exArr.myMap(function(callbackFn) {return callbackFn;}) )
-
-console.log("Map: ")
-console.log( exArr.map(function(callbackFn) {return callbackFn;}) )
-
-// FILTER //
-Array.prototype.myFilter = function() {
-
-};
+console.log("Filter: ")
+console.log( exArr.filter(function(callbackFn) {return callbackFn.length < 8;}) )
 
 // SOME //
-Array.prototype.mySome = function() {
-
+Array.prototype.mySome = function(callbackFn) {
+    for (let i = 0; i < this.length; i++) {
+        if( callbackFn(this[i]) ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 };
 
 // EVERY //
