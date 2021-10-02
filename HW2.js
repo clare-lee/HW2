@@ -1,4 +1,4 @@
-const arr = [1,2,3];
+// const arr = [1,2,3];
 
 // FOR EACH //
 Array.prototype.myEach = function(callbackFn) {
@@ -13,16 +13,30 @@ Array.prototype.myEach = function(callbackFn) {
 
 // TEST
 
-console.log("myEach: ")
-arr.myEach( x => console.log(x) );
+// console.log("myEach: ")
+// arr.myEach( x => console.log(x) );
 
-console.log("forEach: ")
-arr.forEach( x => console.log(x) );
+// console.log("forEach: ")
+// arr.forEach( x => console.log(x) );
 
 // MAP //
-Array.prototype.myMap = function() {
-
+Array.prototype.myMap = function(callbackFn) {
+    result = [];
+    for (let i = 0; i < this.length; i++) {
+        result.push( callbackFn(this[i], i, this) );
+    }
+    return result;
 };
+
+// TEST
+const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
+
+console.log("myMap: ")
+
+console.log( exArr.myMap(function(callbackFn) {return callbackFn;}) )
+
+console.log("Map: ")
+console.log( exArr.map(function(callbackFn) {return callbackFn;}) )
 
 // FILTER //
 Array.prototype.myFilter = function() {
