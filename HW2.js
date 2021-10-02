@@ -21,7 +21,7 @@ Array.prototype.myEach = function(callbackFn) {
 
 // MAP //
 Array.prototype.myMap = function(callbackFn) {
-    arr = [];
+    var arr = [];
     for (let i = 0; i < this.length; i++) {
         arr[i] = callbackFn(this[i], i, this) ;
     }
@@ -40,7 +40,7 @@ Array.prototype.myMap = function(callbackFn) {
 
 // FILTER //
 Array.prototype.myFilter = function(callbackFn) {
-    arr = [];
+    var arr = [];
     for (let i = 0; i < this.length; i++) {
         if( callbackFn(this[i]) ) {
             arr[i] = this[i] ;
@@ -50,30 +50,53 @@ Array.prototype.myFilter = function(callbackFn) {
 };
 
 // TEST
-const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
+// const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
 
-console.log("myFilter: ")
-console.log( exArr.myFilter(function(callbackFn) {return callbackFn.length < 8;}) )
+// console.log("myFilter: ")
+// console.log( exArr.myFilter(function(callbackFn) {return callbackFn.length < 8;}) )
 
-console.log("Filter: ")
-console.log( exArr.filter(function(callbackFn) {return callbackFn.length < 8;}) )
+// console.log("Filter: ")
+// console.log( exArr.filter(function(callbackFn) {return callbackFn.length < 8;}) )
 
 // SOME //
 Array.prototype.mySome = function(callbackFn) {
     for (let i = 0; i < this.length; i++) {
-        if( callbackFn(this[i]) ) {
+        if ( callbackFn(this[i]) ) {
             return true;
         }
-        else {
+    }
+    return false;
+};
+
+// TEST
+//const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
+// const exArr =['bibibibibibibib', 'jhgj', 'kmijnuhjhgfdb']
+
+// console.log("mySome: ")
+// console.log( exArr.mySome(function(callbackFn) {return callbackFn.length < 8;}) )
+
+// console.log("Some: ")
+// console.log( exArr.some(function(callbackFn) {return callbackFn.length < 8;}) )
+
+// EVERY //
+Array.prototype.myEvery = function(callbackFn) {
+    for (let i = 0; i < this.length; i++) {
+        if( !callbackFn(this[i]) ) {
             return false;
         }
     }
+    return true;
 };
 
-// EVERY //
-Array.prototype.myEvery = function() {
+// TEST
+//const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
+// const exArr =['bibibibibibibib', 'jhgj', 'kmijnuhjhgfdb']
 
-};
+// console.log("mySome: ")
+// console.log( exArr.mySome(function(callbackFn) {return callbackFn.length < 8;}) )
+
+// console.log("Some: ")
+// console.log( exArr.some(function(callbackFn) {return callbackFn.length < 8;}) )
 
 // REDUCE //
 Array.prototype.myReduce = function() {
