@@ -23,7 +23,7 @@ Array.prototype.myEach = function(callbackFn) {
 Array.prototype.myMap = function(callbackFn) {
     result = [];
     for (let i = 0; i < this.length; i++) {
-        result.push( callbackFn(this[i], i, this) );
+        result[i] = callbackFn(this[i], i, this) ;
     }
     return result;
 };
