@@ -1,7 +1,23 @@
-// FOR EACH //
-Array.prototype.myEach = function() {
+const arr = [1,2,3];
 
+// FOR EACH //
+Array.prototype.myEach = function(callbackFn) {
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] ===  undefined) continue;
+        //element
+        //element, index
+        //element, index, array
+        callbackFn(this[i], i, this);
+    }
 };
+
+// TEST
+
+console.log("myEach: ")
+arr.myEach( x => console.log(x) );
+
+console.log("forEach: ")
+arr.forEach( x => console.log(x) );
 
 // MAP //
 Array.prototype.myMap = function() {
