@@ -107,13 +107,13 @@ Array.prototype.myReduce = function() {
 Array.prototype.myIncludes = function(element, index) {
     if (index !== undefined) {
         for (let i = index; i < this.length; i++) {
-            if ( this[i] == element ) 
+            if ( this[i] === element ) 
                 return true;
         }
     }
     else
         for (let i = 0; i < this.length; i++) {
-            if( this[i] == element ) {
+            if( this[i] === element ) {
                 return true ;
             }
         }
@@ -130,19 +130,120 @@ Array.prototype.myIncludes = function(element, index) {
 // console.log( exArr.includes(num) )
 
 // INDEXOF //
-Array.prototype.myIndexOf = function() {
-
+Array.prototype.myIndexOf = function(element, index) {
+    if (index !== undefined) {
+        if (index >= this.length) {
+            return -1;
+        }
+        else {
+            for (let i = index; i < -1 ; i++) {
+                if ( this[i] === element ) {
+                    return i;
+                }
+            }
+            for (let i = index; 0 <= i < this.length; i++) {
+                if ( this[i] === element ) {
+                    return i;
+                }
+            }
+        }
+    }
+    else {
+        for (let i = 0; i < this.length; i++) {
+            if( this[i] === element ) {
+                return i ;
+            }
+        }
+    }
+    return -1;
 };
+// const exArr = [1, 2, 3];
+// console.log(exArr.indexOf(3));    
+// console.log(exArr.indexOf(5));    
+// console.log(exArr.indexOf(1, 2));  
+// console.log(exArr.indexOf(1, 0));
+// console.log("------------")
+// console.log(exArr.myIndexOf(3));    
+// console.log(exArr.myIndexOf(5));    
+// console.log(exArr.myIndexOf(1, 2));  
+// console.log(exArr.myIndexOf(1, 0));
 
 // PUSH //
-Array.prototype.myPush = function() {
-
+Array.prototype.myPush = function(...args) {
+    let arg_i = 0
+    let length = this.length;
+    //args = [4,5,6]
+    //last element of 'this' is at length-1
+    for( let i = length; i < length + args.length; i++) {
+        this[i] = args[arg_i];
+        arg_i++;
+    }
+    return this.length;
 };
+
+// TEST
+// var arr = [1,2,3];
+// console.log(arr.myPush(4,5,6)); // 6
+// console.log(arr)                // [1, 2, 3, 4, 5, 6]
 
 // LASTINDEXOF //
-Array.prototype.myLastIndexOf = function() {
-
+Array.prototype.myLastIndexOf = function(element, index) {
+    // searchElement
+    // searchElement, fromIndex
+    if (index === undefined) {
+        for (let i = this.length - 1; i > -1 ; i--) {
+            if (this[i] === element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    else {
+        // index >= array.length, the whole array is searched backwards
+        if (index >= this.length) {
+            for (let i = index; i >= 0; i--) {
+                if (this[i] === element) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        // positive index
+        else if (index > 0) {
+            for (let i = index; i >= 0; i--) {
+                if (this[i] === element) {
+                    return i;
+                }
+            }
+        }
+        // negative index, array is still searched backwards
+        else if (index < 0) {
+            for (let i = -1; i > index; i++) { 
+                if (this[i] === element) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        else 
+            return -1;
+    }
 };
+
+var numbers = [2, 5, 9, 2];
+console.log(numbers.lastIndexOf(2));     // 3
+console.log(numbers.lastIndexOf(7));     // -1
+console.log(numbers.lastIndexOf(2, 3));  // 3
+console.log(numbers.lastIndexOf(2, 2));  // 0
+console.log(numbers.lastIndexOf(2, -2)); // 0
+console.log(numbers.lastIndexOf(2, -1)); // 3
+console.log('--------')
+console.log(numbers.lastIndexOf(2));     // 3
+console.log(numbers.lastIndexOf(7));     // -1
+console.log(numbers.lastIndexOf(2, 3));  // 3
+console.log(numbers.lastIndexOf(2, 2));  // 0
+console.log(numbers.lastIndexOf(2, -2)); // 0
+console.log(numbers.lastIndexOf(2, -1)); // 3
 
 // KEYS //
 Object.grabKeys = function() {
