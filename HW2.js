@@ -9,7 +9,6 @@ Array.prototype.myEach = function(callbackFn) {
         callbackFn(this[i], i, this);
     }
 };
-
 // TEST
 // const arr = [1,2,3];
 
@@ -204,7 +203,8 @@ Array.prototype.myIncludes = function(element, index) {
 Array.prototype.myIndexOf = function(element, index) {
 // indexOf(searchElement)
 // indexOf(searchElement, fromIndex)
-    // for no index or index at 0
+
+    // if fromIndex is not provide or is equal to 0
     if (index === undefined || index === 0) {
         for (let i = 0; i < this.length; i++) {
             if (this[i] === element) {
@@ -214,34 +214,38 @@ Array.prototype.myIndexOf = function(element, index) {
         return -1;
     }
     else {
-        // search starts front to back so index >= array.length will not be searched
+        // if fromIndex is greater than or equal to array length 
         if (index >= this.length) {
             return -1;
         }
-        else if (index < 0) {
-            for (let i = (index + this.length); i < 0; i++) {
+        // if fromIndex is positive
+        else if (index > 0) {
+            for (let i = index; i < this.length; i++) {
+                if (this[i] === element) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        // if from index is negative
+        else (index < 0) ;{
+            for (let i = (index + this.length); i <= 0; i++) {
                 if (this[i] === element) {
                     return i;
                 }
             }
         }
-        else {
-            return -1;
-        }
+        return -1;
+
     }
 };
-
 // TEST
-// const exArr = [1, 2, 3];
-// console.log(exArr.indexOf(3));    
-// console.log(exArr.indexOf(5));    
-// console.log(exArr.indexOf(1, 2));  
-// console.log(exArr.indexOf(1, 0));
-// console.log("------------")
-// console.log(exArr.myIndexOf(3));    
-// console.log(exArr.myIndexOf(5));    
-// console.log(exArr.myIndexOf(1, 2));  
-// console.log(exArr.myIndexOf(1, 0));
+// const arr = [2, 9, 9];
+// console.log(arr.myIndexOf(2));     // 0
+// console.log(arr.myIndexOf(7));     // -1
+// console.log(arr.myIndexOf(9, 2));  // 2
+// console.log(arr.myIndexOf(2, -1)); // -1
+// console.log(arr.myIndexOf(2, -3)); // 0
 
 // PUSH //
 Array.prototype.myPush = function(...args) {
@@ -255,7 +259,6 @@ Array.prototype.myPush = function(...args) {
     }
     return this.length;
 };
-
 // TEST
 // var arr = [1,2,3];
 // console.log(arr.myPush(4,5,6)); // 6
@@ -263,9 +266,12 @@ Array.prototype.myPush = function(...args) {
 
 // LASTINDEXOF //
 Array.prototype.myLastIndexOf = function(element, index) {
-    // searchElement
-    // searchElement, fromIndex
-    if (index === undefined) {
+// lastIndexOf(searchElement)
+// lastIndexOf(searchElement, fromIndex)
+
+    // if fromIndex is not provided or is greater than array length, search whole array starting from the back
+    if (index === undefined || index >= this.length) {
+        // search backwards
         for (let i = this.length - 1; i > -1 ; i--) {
             if (this[i] === element) {
                 return i;
@@ -274,8 +280,8 @@ Array.prototype.myLastIndexOf = function(element, index) {
         return -1;
     }
     else {
-        // index >= array.length, the whole array is searched backwards
-        if (index >= this.length) {
+        // if fromIndex is positive but not greater than or equal to array length
+        if (index >= 0) {
             for (let i = index; i >= 0; i--) {
                 if (this[i] === element) {
                     return i;
@@ -283,57 +289,28 @@ Array.prototype.myLastIndexOf = function(element, index) {
             }
             return -1;
         }
-        // positive index
-        else if (index > 0) {
-            for (let i = index; i >= 0; i--) {
-                if (this[i] === element) {
-                    return i;
-                }
-            }
-        }
-        // negative index, array is still searched backwards
-        else if (index < 0) {
-            for (let i = -1; i > index; i++) { 
+        // if fromIndex is negative, array is still searched backwards
+        else {
+            for (let i = (index + this.length); i >= 0; i--) { 
+                //console.log(i)
                 if (this[i] === element) {
                     return i;
                 }
             }
             return -1;
         }
-        else 
-            return -1;
     }
 };
-
 // TEST
-// var numbers = [2, 5, 9, 2];
-// console.log(numbers.lastIndexOf(2));     // 3
-// console.log(numbers.lastIndexOf(7));     // -1
-// console.log(numbers.lastIndexOf(2, 3));  // 3
-// console.log(numbers.lastIndexOf(2, 2));  // 0
-// console.log(numbers.lastIndexOf(2, -2)); // 0
-// console.log(numbers.lastIndexOf(2, -1)); // 3
-// console.log('--------')
-// console.log(numbers.myLastIndexOf(2));     // 3
-// console.log(numbers.myLastIndexOf(7));     // -1
-// console.log(numbers.myLastIndexOf(2, 3));  // 3
-// console.log(numbers.myLastIndexOf(2, 2));  // 0
-// console.log(numbers.myLastIndexOf(2, -2)); // 0
-// console.log(numbers.myLastIndexOf(2, -1)); // 3
+// const arr1 = [2, 5, 9, 2];
+// console.log(arr1.myLastIndexOf(2));         // 3
+// console.log(arr1.myLastIndexOf(7));         // -1
+// console.log(arr1.myLastIndexOf(2, 3));      // 3
+// console.log(arr1.myLastIndexOf(2, 2));      // 0
+// console.log(arr1.myLastIndexOf(2, -2));     // 0
+// console.log(arr1.myLastIndexOf(2, -1));     // 3
 
 // KEYS //
-// Object.grabKeys = function(obj) {
-//     // skips holes 
-//     var key_arr = [];
-//     for (let key in obj) {
-//         if (key ===  undefined) 
-//             continue;
-//         else
-//             key_arr.push(key);
-//     }
-//     return key_arr; 
-// };
-
 Object.grabKeys = function(obj) {
 // Object.keys(obj)
     var key_arr = [];   
@@ -346,7 +323,7 @@ Object.grabKeys = function(obj) {
     }
     return key_arr; 
 };
-// // TEST
+// TEST
 // const notArr1 = 'asdf'
 // const notArr2 = 1234
 // const arr1 = {a: 1, b: 2, c: 3};
@@ -361,30 +338,22 @@ Object.grabKeys = function(obj) {
 Object.grabValues = function(obj) {
 // Object.values(obj)
     var obj_arr = [];
-    // check if value is an object
-    // if (typeof obj !== 'object') {
-    //     return 'TypeError: Not an object'
-    // }
+
     for (const [key, value] of Object.entries(obj)) {
         if (key ===  undefined)     // simple array
-            obj_arr.push(value)
+            obj_arr.push(value);
         else                        // key:value object
-            obj_arr.push(obj);
+            obj_arr.push(value);
     }
     return obj_arr;
 };
 // TEST
-const notArr1 = 'asdf'
-const notArr2 = 1234
-const arr1 = {a: 1, b: 2, c: 3};
-const arr2 = ['a', 'b', 'c'];
+// const notArr1 = 'asdf'
+// const notArr2 = 1234
+// const arr1 = {a: 1, b: 2, c: 3};
+// const arr2 = ['a', 'b', 'c'];
 
-console.log( Object.values(notArr1) );
-console.log( Object.values(notArr2) );
-console.log( Object.values(arr1) );
-console.log( Object.values(arr2) );
-console.log( '---------------------')
-console.log( Object.grabValues(notArr1) );
-console.log( Object.grabValues(notArr2) );
-console.log( Object.grabValues(arr1) );
-console.log( Object.grabValues(arr2) );
+// console.log( Object.grabValues(notArr1) );  // [ 'a', 's', 'd', 'f' ]
+// console.log( Object.grabValues(notArr2) );  // []
+// console.log( Object.grabValues(arr1) );     // [ 1, 2, 3 ]
+// console.log( Object.grabValues(arr2) );     // [ 'a', 'b', 'c' ]
