@@ -21,6 +21,9 @@ Array.prototype.myEach = function(callbackFn) {
 
 // MAP //
 Array.prototype.myMap = function(callbackFn) {
+// map((element) => { ... })
+// map((element, index) => { ... })
+// map((element, index, array) => { ... })
     let arr = [];
     for (let i = 0; i < this.length; i++) {
         arr[i] = callbackFn(this[i], i, this) ;
@@ -40,9 +43,12 @@ Array.prototype.myMap = function(callbackFn) {
 
 // FILTER //
 Array.prototype.myFilter = function(callbackFn) {
+// filter((element) => { ... } )
+// filter((element, index) => { ... } )
+// filter((element, index, array) => { ... } )
     let arr = [];
     for (let i = 0; i < this.length; i++) {
-        if( callbackFn(this[i]) ) {
+        if( callbackFn(this[i], i, this) ) {
             arr[i] = this[i] ;
         }
     }
@@ -60,17 +66,18 @@ Array.prototype.myFilter = function(callbackFn) {
 
 // SOME //
 Array.prototype.mySome = function(callbackFn) {
+// some((element) => { ... } )
+// some((element, index) => { ... } )
+// some((element, index, array) => { ... } )
     for (let i = 0; i < this.length; i++) {
-        if ( callbackFn(this[i]) ) {
+        if ( callbackFn(this[i], i, this) ) {
             return true;
         }
     }
     return false;
 };
-
 // TEST
-//const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
-// const exArr =['bibibibibibibib', 'jhgj', 'kmijnuhjhgfdb']
+// const exArr =['bibibibibibibib', 'jgj', 'kmijnuhjhgfdb']
 
 // console.log("mySome: ")
 // console.log( exArr.mySome(function(callbackFn) {return callbackFn.length < 8;}) )
@@ -80,8 +87,11 @@ Array.prototype.mySome = function(callbackFn) {
 
 // EVERY //
 Array.prototype.myEvery = function(callbackFn) {
+// every((element) => { ... } )
+// every((element, index) => { ... } )
+// every((element, index, array) => { ... } )
     for (let i = 0; i < this.length; i++) {
-        if( !callbackFn(this[i]) ) {
+        if( !callbackFn(this[i], i, this) ) {
             return false;
         }
     }
@@ -89,8 +99,7 @@ Array.prototype.myEvery = function(callbackFn) {
 };
 
 // TEST
-//const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
-// const exArr =['bibibibibibibib', 'jhgj', 'kmijnuhjhgfdb']
+// const exArr =['bibibibibibibib', 'jadsfasdfhgj', 'kmijnuhjhgfdb']
 
 // console.log("mySome: ")
 // console.log( exArr.mySome(function(callbackFn) {return callbackFn.length < 8;}) )
@@ -105,6 +114,8 @@ Array.prototype.myReduce = function() {
 
 // INCLUDES //
 Array.prototype.myIncludes = function(element, index) {
+// includes(searchElement)
+// includes(searchElement, fromIndex)
     if (index !== undefined) {
         for (let i = index; i < this.length; i++) {
             if ( this[i] === element ) 
@@ -117,7 +128,6 @@ Array.prototype.myIncludes = function(element, index) {
                 return true ;
             }
         }
-    
     return false;
 };
 
@@ -131,42 +141,46 @@ Array.prototype.myIncludes = function(element, index) {
 
 // INDEXOF //
 Array.prototype.myIndexOf = function(element, index) {
-    if (index !== undefined) {
+// indexOf(searchElement)
+// indexOf(searchElement, fromIndex)
+    // for no index or index at 0
+    if (index === undefined || index === 0) {
+        for (let i = 0; i < this.length; i++) {
+            if (this[i] === element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    else {
+        // search starts front to back so index >= array.length will not be searched
         if (index >= this.length) {
             return -1;
         }
+        else if (index < 0) {
+            for (let i = (index + this.length); i < 0; i++) {
+                if (this[i] === element) {
+                    return i;
+                }
+            }
+        }
         else {
-            for (let i = index; i < -1 ; i++) {
-                if ( this[i] === element ) {
-                    return i;
-                }
-            }
-            for (let i = index; 0 <= i < this.length; i++) {
-                if ( this[i] === element ) {
-                    return i;
-                }
-            }
+            return -1;
         }
     }
-    else {
-        for (let i = 0; i < this.length; i++) {
-            if( this[i] === element ) {
-                return i ;
-            }
-        }
-    }
-    return -1;
 };
-// const exArr = [1, 2, 3];
-// console.log(exArr.indexOf(3));    
-// console.log(exArr.indexOf(5));    
-// console.log(exArr.indexOf(1, 2));  
-// console.log(exArr.indexOf(1, 0));
-// console.log("------------")
-// console.log(exArr.myIndexOf(3));    
-// console.log(exArr.myIndexOf(5));    
-// console.log(exArr.myIndexOf(1, 2));  
-// console.log(exArr.myIndexOf(1, 0));
+
+// TEST
+const exArr = [1, 2, 3];
+console.log(exArr.indexOf(3));    
+console.log(exArr.indexOf(5));    
+console.log(exArr.indexOf(1, 2));  
+console.log(exArr.indexOf(1, 0));
+console.log("------------")
+console.log(exArr.myIndexOf(3));    
+console.log(exArr.myIndexOf(5));    
+console.log(exArr.myIndexOf(1, 2));  
+console.log(exArr.myIndexOf(1, 0));
 
 // PUSH //
 Array.prototype.myPush = function(...args) {
@@ -230,25 +244,36 @@ Array.prototype.myLastIndexOf = function(element, index) {
     }
 };
 
-var numbers = [2, 5, 9, 2];
-console.log(numbers.lastIndexOf(2));     // 3
-console.log(numbers.lastIndexOf(7));     // -1
-console.log(numbers.lastIndexOf(2, 3));  // 3
-console.log(numbers.lastIndexOf(2, 2));  // 0
-console.log(numbers.lastIndexOf(2, -2)); // 0
-console.log(numbers.lastIndexOf(2, -1)); // 3
-console.log('--------')
-console.log(numbers.lastIndexOf(2));     // 3
-console.log(numbers.lastIndexOf(7));     // -1
-console.log(numbers.lastIndexOf(2, 3));  // 3
-console.log(numbers.lastIndexOf(2, 2));  // 0
-console.log(numbers.lastIndexOf(2, -2)); // 0
-console.log(numbers.lastIndexOf(2, -1)); // 3
+// TEST
+// var numbers = [2, 5, 9, 2];
+// console.log(numbers.lastIndexOf(2));     // 3
+// console.log(numbers.lastIndexOf(7));     // -1
+// console.log(numbers.lastIndexOf(2, 3));  // 3
+// console.log(numbers.lastIndexOf(2, 2));  // 0
+// console.log(numbers.lastIndexOf(2, -2)); // 0
+// console.log(numbers.lastIndexOf(2, -1)); // 3
+// console.log('--------')
+// console.log(numbers.myLastIndexOf(2));     // 3
+// console.log(numbers.myLastIndexOf(7));     // -1
+// console.log(numbers.myLastIndexOf(2, 3));  // 3
+// console.log(numbers.myLastIndexOf(2, 2));  // 0
+// console.log(numbers.myLastIndexOf(2, -2)); // 0
+// console.log(numbers.myLastIndexOf(2, -1)); // 3
 
 // KEYS //
-Object.grabKeys = function() {
-
+Object.grabKeys = function(obj) {
+    // skips holes if (this[i] ===  undefined) continue;
+    var key_arr = [];
+    for (var key in obj) {
+        key_arr.push(key);
+    }
+    return key_arr;
 };
+
+// TEST
+
+// const test = {a: 1, b: 2, c: 3};
+// console.log( grabKeys(test) );
 
 // VALUES //
 Object.grabValues = function() {
