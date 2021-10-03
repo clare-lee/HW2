@@ -29,14 +29,18 @@ Array.prototype.myMap = function(callbackFn) {
     }
     return arr;
 };
+const array1 = [1, 4, 9, 16];
 
+// pass a function to map
+const map1 = array1.map(x => x * 2);
+
+console.log(map1);
+// expected output: Array [2, 8, 18, 32]
 // TEST
 // const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
 
 // console.log("myMap: ")
-
 // console.log( exArr.myMap(function(callbackFn) {return callbackFn;}) )
-
 // console.log("Map: ")
 // console.log( exArr.map(function(callbackFn) {return callbackFn;}) )
 
@@ -53,7 +57,6 @@ Array.prototype.myFilter = function(callbackFn) {
     }
     return arr;
 };
-
 // TEST
 // const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
 
@@ -96,7 +99,6 @@ Array.prototype.myEvery = function(callbackFn) {
     }
     return true;
 };
-
 // TEST
 // const exArr =['bibibibibibibib', 'jadsfasdfhgj', 'kmijnuhjhgfdb']
 
@@ -107,14 +109,29 @@ Array.prototype.myEvery = function(callbackFn) {
 // console.log( exArr.some(function(callbackFn) {return callbackFn.length < 8;}) )
 
 // REDUCE //
-Array.prototype.myReduce = function() {
-
+Array.prototype.myReduce = function(callbackFn) {
+// reduce((previousValue, currentValue) => { ... } )
+// reduce((previousValue, currentValue, currentIndex) => { ... } )
+// reduce((previousValue, currentValue, currentIndex, array) => { ... } )
+// reduce((previousValue, currentValue, currentIndex, array) => { ... }, initialValue)
+    for (let i = 0; i < this.length; i++) {
+        initialVal = callbackFn(this[i-1], this[i], i, this)
+    }
+    return initialVal;
+    
 };
+// TEST
+// const array1 = [1, 2, 3, 4];
+// const reducer = (previousValue, currentValue) => previousValue + currentValue;
+
+// console.log(array1.reduce(reducer));    // 1 + 2 + 3 + 4 =1 0
+// console.log(array1.reduce(reducer, 5)); // 5 + 1 + 2 + 3 + 4 = 15
 
 // INCLUDES //
 Array.prototype.myIncludes = function(element, index) {
 // includes(searchElement)
 // includes(searchElement, fromIndex)
+
     // if fromIndex is not provided or equal to 0 start this way
     if (index === undefined || index === 0) {
         for (let i = 0; i < this.length; i++) {
@@ -122,59 +139,34 @@ Array.prototype.myIncludes = function(element, index) {
                 return true;
             }
         }
-        return false +1;
+        return false;
     }
     // if fromIndex is provided
     else {
-        // for fromIndex greater than array lengther
+        // for fromIndex greater than array length
         if (index > this.length) {
-            return false+2;
+            return false;
         }
-        // for positive fromIndex and not greater than array length
+        // for positive fromIndex 
         else if ( index > 0 ) {
             for ( let i = index; i < index.length; i++) {
                 if ( this[i] === element) {
                     return true;
                 }
             }
-            return false+3;
+            return false;
         }
-        // for negative fromIndex and greater than array length
-        else if ( index + this.length <= 0) {
-            for (let i = 0; i < this.length; i++) {
-                if (this[i] === element) {
-                    return true;
-                }
-            }
-            return false+4;
-        }
-        // for negtive fromIndex within array length
+        // for negative fromIndex 
         else {
-            for (let i = index; i < 0; i++) {
+            for (let i = (index + this.length); i < this.length; i++) {
                 if (this[i] === element) {
                     return true;
                 }
             }
-            return false+5;
+            return false;
         }
     }
 };
-// // old one
-//     if (index !== undefined) {
-//         for (let i = index; i < this.length; i++) {
-//             if ( this[i] === element ) 
-//                 return true;
-//         }
-//     }
-//     else
-//         for (let i = 0; i < this.length; i++) {
-//             if( this[i] === element ) {
-//                 return true ;
-//             }
-//         }
-//     return false;
-//};
-
 // TEST
 // const arr1 = [1, 2, 3];
 // const arr2 = [1, 2, NaN];
@@ -185,8 +177,8 @@ Array.prototype.myIncludes = function(element, index) {
 // console.log(arr1.myIncludes(2))         // true
 // console.log(arr1.myIncludes(4))         // false
 // console.log(arr1.myIncludes(3, 3))      // false
-// console.log(arr1.myIncludes(3, -1))     // true     error
-// console.log(arr2.myIncludes(NaN))       // true     error
+// console.log(arr1.myIncludes(3, -1))     // true     
+// console.log(arr2.myIncludes(NaN))       // true     error Can't seem to fix this no matter what
 // console.log(arr3.myIncludes(3))         // false
 // console.log('........')
 // // fromIndex is greater than or equal to the array length
