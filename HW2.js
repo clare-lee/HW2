@@ -21,7 +21,7 @@ Array.prototype.myEach = function(callbackFn) {
 
 // MAP //
 Array.prototype.myMap = function(callbackFn) {
-    var arr = [];
+    let arr = [];
     for (let i = 0; i < this.length; i++) {
         arr[i] = callbackFn(this[i], i, this) ;
     }
@@ -40,7 +40,7 @@ Array.prototype.myMap = function(callbackFn) {
 
 // FILTER //
 Array.prototype.myFilter = function(callbackFn) {
-    var arr = [];
+    let arr = [];
     for (let i = 0; i < this.length; i++) {
         if( callbackFn(this[i]) ) {
             arr[i] = this[i] ;
@@ -104,9 +104,30 @@ Array.prototype.myReduce = function() {
 };
 
 // INCLUDES //
-Array.prototype.myIncludes = function() {
-
+Array.prototype.myIncludes = function(element, index) {
+    if (index !== undefined) {
+        for (let i = index; i < this.length; i++) {
+            if ( this[i] == element ) 
+                return true;
+        }
+    }
+    else
+        for (let i = 0; i < this.length; i++) {
+            if( this[i] == element ) {
+                return true ;
+            }
+        }
+    
+    return false;
 };
+
+// TEST
+// const exArr = [1, 2, 3];
+// const num = 2;
+// const exArr = ['asdf', 'fdsa', 'dsfa']
+// const num = 'asdf'
+// console.log( exArr.myIncludes(num) ) 
+// console.log( exArr.includes(num) )
 
 // INDEXOF //
 Array.prototype.myIndexOf = function() {
