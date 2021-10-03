@@ -116,28 +116,89 @@ Array.prototype.myReduce = function() {
 Array.prototype.myIncludes = function(element, index) {
 // includes(searchElement)
 // includes(searchElement, fromIndex)
-    if (index !== undefined) {
-        for (let i = index; i < this.length; i++) {
-            if ( this[i] === element ) 
-                return true;
-        }
-    }
-    else
+    // if fromIndex is not provided or equal to 0 start this way
+    if (index === undefined || index === 0) {
         for (let i = 0; i < this.length; i++) {
-            if( this[i] === element ) {
-                return true ;
+            if ( this[i] === element ) {
+                return true;
             }
         }
-    return false;
+        return false +1;
+    }
+    // if fromIndex is provided
+    else {
+        // for fromIndex greater than array lengther
+        if (index > this.length) {
+            return false+2;
+        }
+        // for positive fromIndex and not greater than array length
+        else if ( index > 0 ) {
+            for ( let i = index; i < index.length; i++) {
+                if ( this[i] === element) {
+                    return true;
+                }
+            }
+            return false+3;
+        }
+        // for negative fromIndex and greater than array length
+        else if ( index + this.length <= 0) {
+            for (let i = 0; i < this.length; i++) {
+                if (this[i] === element) {
+                    return true;
+                }
+            }
+            return false+4;
+        }
+        // for negtive fromIndex within array length
+        else {
+            for (let i = index; i < 0; i++) {
+                if (this[i] === element) {
+                    return true;
+                }
+            }
+            return false+5;
+        }
+    }
 };
+// // old one
+//     if (index !== undefined) {
+//         for (let i = index; i < this.length; i++) {
+//             if ( this[i] === element ) 
+//                 return true;
+//         }
+//     }
+//     else
+//         for (let i = 0; i < this.length; i++) {
+//             if( this[i] === element ) {
+//                 return true ;
+//             }
+//         }
+//     return false;
+//};
 
 // TEST
-// const exArr = [1, 2, 3];
-// const num = 2;
-// const exArr = ['asdf', 'fdsa', 'dsfa']
-// const num = 'asdf'
-// console.log( exArr.myIncludes(num) ) 
-// console.log( exArr.includes(num) )
+// const arr1 = [1, 2, 3];
+// const arr2 = [1, 2, NaN];
+// const arr3 = ["1", "2", "3"];
+// const arr4 = ['a', 'b', 'c'];
+
+// // reg examples
+// console.log(arr1.myIncludes(2))         // true
+// console.log(arr1.myIncludes(4))         // false
+// console.log(arr1.myIncludes(3, 3))      // false
+// console.log(arr1.myIncludes(3, -1))     // true     error
+// console.log(arr2.myIncludes(NaN))       // true     error
+// console.log(arr3.myIncludes(3))         // false
+// console.log('........')
+// // fromIndex is greater than or equal to the array length
+// console.log(arr4.myIncludes('c', 3))    // false
+// console.log(arr4.myIncludes('c', 100))  // false
+// console.log('........')
+// // Computed index is negative
+// console.log(arr4.myIncludes('a', -100)) // true
+// console.log(arr4.myIncludes('b', -100)) // true
+// console.log(arr4.myIncludes('c', -100)) // true
+// console.log(arr4.myIncludes('a', -2))   // false    
 
 // INDEXOF //
 Array.prototype.myIndexOf = function(element, index) {
@@ -171,16 +232,16 @@ Array.prototype.myIndexOf = function(element, index) {
 };
 
 // TEST
-const exArr = [1, 2, 3];
-console.log(exArr.indexOf(3));    
-console.log(exArr.indexOf(5));    
-console.log(exArr.indexOf(1, 2));  
-console.log(exArr.indexOf(1, 0));
-console.log("------------")
-console.log(exArr.myIndexOf(3));    
-console.log(exArr.myIndexOf(5));    
-console.log(exArr.myIndexOf(1, 2));  
-console.log(exArr.myIndexOf(1, 0));
+// const exArr = [1, 2, 3];
+// console.log(exArr.indexOf(3));    
+// console.log(exArr.indexOf(5));    
+// console.log(exArr.indexOf(1, 2));  
+// console.log(exArr.indexOf(1, 0));
+// console.log("------------")
+// console.log(exArr.myIndexOf(3));    
+// console.log(exArr.myIndexOf(5));    
+// console.log(exArr.myIndexOf(1, 2));  
+// console.log(exArr.myIndexOf(1, 0));
 
 // PUSH //
 Array.prototype.myPush = function(...args) {
@@ -261,21 +322,69 @@ Array.prototype.myLastIndexOf = function(element, index) {
 // console.log(numbers.myLastIndexOf(2, -1)); // 3
 
 // KEYS //
+// Object.grabKeys = function(obj) {
+//     // skips holes 
+//     var key_arr = [];
+//     for (let key in obj) {
+//         if (key ===  undefined) 
+//             continue;
+//         else
+//             key_arr.push(key);
+//     }
+//     return key_arr; 
+// };
+
 Object.grabKeys = function(obj) {
-    // skips holes if (this[i] ===  undefined) continue;
-    var key_arr = [];
-    for (var key in obj) {
-        key_arr.push(key);
+// Object.keys(obj)
+    var key_arr = [];   
+
+    for (const [key, value] of Object.entries(obj)) {
+        if (key ===  undefined) 
+            key_arr.push(indexOf(key))  // simple array
+        else
+            key_arr.push(key)          // key:value object
     }
-    return key_arr;
+    return key_arr; 
 };
+// // TEST
+// const notArr1 = 'asdf'
+// const notArr2 = 1234
+// const arr1 = {a: 1, b: 2, c: 3};
+// const arr2 = ['a', 'b', 'c'];
 
-// TEST
-
-// const test = {a: 1, b: 2, c: 3};
-// console.log( grabKeys(test) );
+// console.log( Object.grabKeys(notArr1) );    // [ '0', '1', '2', '3' ]
+// console.log( Object.grabKeys(notArr2) );    // []
+// console.log( Object.grabKeys(arr1) );       // [ 'a', 'b', 'c' ]
+// console.log( Object.grabKeys(arr2) );       // [ '0', '1', '2' ]
 
 // VALUES //
-Object.grabValues = function() {
-
+Object.grabValues = function(obj) {
+// Object.values(obj)
+    var obj_arr = [];
+    // check if value is an object
+    // if (typeof obj !== 'object') {
+    //     return 'TypeError: Not an object'
+    // }
+    for (const [key, value] of Object.entries(obj)) {
+        if (key ===  undefined)     // simple array
+            obj_arr.push(value)
+        else                        // key:value object
+            obj_arr.push(obj);
+    }
+    return obj_arr;
 };
+// TEST
+const notArr1 = 'asdf'
+const notArr2 = 1234
+const arr1 = {a: 1, b: 2, c: 3};
+const arr2 = ['a', 'b', 'c'];
+
+console.log( Object.values(notArr1) );
+console.log( Object.values(notArr2) );
+console.log( Object.values(arr1) );
+console.log( Object.values(arr2) );
+console.log( '---------------------')
+console.log( Object.grabValues(notArr1) );
+console.log( Object.grabValues(notArr2) );
+console.log( Object.grabValues(arr1) );
+console.log( Object.grabValues(arr2) );
