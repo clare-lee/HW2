@@ -77,3 +77,16 @@ console.log(arr1.myLastIndexOf(2, 3));      // 3
 console.log(arr1.myLastIndexOf(2, 2));      // 0
 console.log(arr1.myLastIndexOf(2, -2));     // 0
 console.log(arr1.myLastIndexOf(2, -1));     // 3
+
+// grabKeys
+// used test from developer.mozilla.org
+
+const notArr1 = 'asdf'
+const notArr2 = 1234
+const arr1 = {a: 1, b: 2, c: 3};
+const arr2 = ['a', 'b', 'c'];
+
+console.log( Object.grabKeys(notArr1) );    // [ '0', '1', '2', '3' ]
+console.log( Object.grabKeys(notArr2) );    // []
+console.log( Object.grabKeys(arr1) );       // [ 'a', 'b', 'c' ]
+console.log( Object.grabKeys(arr2) );       // [ '0', '1', '2' ]
