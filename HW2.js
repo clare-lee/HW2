@@ -246,16 +246,6 @@ Object.grabKeys = function(obj) {
     }
     return key_arr; 
 };
-// TEST
-// const notArr1 = 'asdf'
-// const notArr2 = 1234
-// const arr1 = {a: 1, b: 2, c: 3};
-// const arr2 = ['a', 'b', 'c'];
-
-// console.log( Object.grabKeys(notArr1) );    // [ '0', '1', '2', '3' ]
-// console.log( Object.grabKeys(notArr2) );    // []
-// console.log( Object.grabKeys(arr1) );       // [ 'a', 'b', 'c' ]
-// console.log( Object.grabKeys(arr2) );       // [ '0', '1', '2' ]
 
 // VALUES //
 Object.grabValues = function(obj) {
