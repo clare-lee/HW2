@@ -63,14 +63,6 @@ Array.prototype.myEvery = function(callbackFn) {
     }
     return true;
 };
-// TEST
-// const exArr =['bibibibibibibib', 'jadsfasdfhgj', 'kmijnuhjhgfdb']
-
-// console.log("mySome: ")
-// console.log( exArr.mySome(function(callbackFn) {return callbackFn.length < 8;}) )
-
-// console.log("Some: ")
-// console.log( exArr.some(function(callbackFn) {return callbackFn.length < 8;}) )
 
 // REDUCE //
 Array.prototype.myReduce = function(callbackFn) {

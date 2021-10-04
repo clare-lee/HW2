@@ -33,3 +33,9 @@ console.log( some_arr.mySome(function(callbackFn) {return callbackFn.length < 8;
 
 console.log("Some: ")
 console.log( some_arr.some(function(callbackFn) {return callbackFn.length < 8;}) )
+
+// myEvery 
+// used test from developer.mozilla.org
+const isBelowThreshold = (currentValue) => currentValue < 40;
+const every_arr = [1, 30, 39, 29, 10, 13];
+console.log(every_arr.every(isBelowThreshold));    // expected output: true
