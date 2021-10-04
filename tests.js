@@ -70,23 +70,36 @@ console.log(push_arr)                // [1, 2, 3, 4, 5, 6]
 // myLastIndexOf
 // used test from developer.mozilla.org
 
-const arr1 = [2, 5, 9, 2];
-console.log(arr1.myLastIndexOf(2));         // 3
-console.log(arr1.myLastIndexOf(7));         // -1
-console.log(arr1.myLastIndexOf(2, 3));      // 3
-console.log(arr1.myLastIndexOf(2, 2));      // 0
-console.log(arr1.myLastIndexOf(2, -2));     // 0
-console.log(arr1.myLastIndexOf(2, -1));     // 3
+const lastIndexOf_arr = [2, 5, 9, 2];
+console.log(lastIndexOf_arr.myLastIndexOf(2));         // 3
+console.log(lastIndexOf_arr.myLastIndexOf(7));         // -1
+console.log(lastIndexOf_arr.myLastIndexOf(2, 3));      // 3
+console.log(lastIndexOf_arr.myLastIndexOf(2, 2));      // 0
+console.log(lastIndexOf_arr.myLastIndexOf(2, -2));     // 0
+console.log(lastIndexOf_arr.myLastIndexOf(2, -1));     // 3
 
 // grabKeys
 // used test from developer.mozilla.org
 
-const notArr1 = 'asdf'
-const notArr2 = 1234
-const arr1 = {a: 1, b: 2, c: 3};
-const arr2 = ['a', 'b', 'c'];
+const keys_notArr1 = 'asdf'
+const keys_notArr2 = 1234
+const keys_arr1 = {a: 1, b: 2, c: 3};
+const keys_arr2 = ['a', 'b', 'c'];
 
-console.log( Object.grabKeys(notArr1) );    // [ '0', '1', '2', '3' ]
-console.log( Object.grabKeys(notArr2) );    // []
-console.log( Object.grabKeys(arr1) );       // [ 'a', 'b', 'c' ]
-console.log( Object.grabKeys(arr2) );       // [ '0', '1', '2' ]
+console.log( Object.grabKeys(keys_notArr1) );    // [ '0', '1', '2', '3' ]
+console.log( Object.grabKeys(keys_notArr2) );    // []
+console.log( Object.grabKeys(keys_arr1) );       // [ 'a', 'b', 'c' ]
+console.log( Object.grabKeys(keys_arr2) );       // [ '0', '1', '2' ]
+
+// grabValues
+// used test from developer.mozilla.org
+
+const values_notArr1 = 'asdf'
+const values_notArr2 = 1234
+const values_arr1 = {a: 1, b: 2, c: 3};
+const values_arr2 = ['a', 'b', 'c'];
+
+console.log( Object.grabValues(values_notArr1) );  // [ 'a', 's', 'd', 'f' ]
+console.log( Object.grabValues(values_notArr2) );  // []
+console.log( Object.grabValues(values_arr1) );     // [ 1, 2, 3 ]
+console.log( Object.grabValues(values_arr2) );     // [ 'a', 'b', 'c' ]

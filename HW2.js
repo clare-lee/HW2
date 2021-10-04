@@ -260,13 +260,3 @@ Object.grabValues = function(obj) {
     }
     return obj_arr;
 };
-// TEST
-// const notArr1 = 'asdf'
-// const notArr2 = 1234
-// const arr1 = {a: 1, b: 2, c: 3};
-// const arr2 = ['a', 'b', 'c'];
-
-// console.log( Object.grabValues(notArr1) );  // [ 'a', 's', 'd', 'f' ]
-// console.log( Object.grabValues(notArr2) );  // []
-// console.log( Object.grabValues(arr1) );     // [ 1, 2, 3 ]
-// console.log( Object.grabValues(arr2) );     // [ 'a', 'b', 'c' ]
