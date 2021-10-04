@@ -181,13 +181,6 @@ Array.prototype.myIndexOf = function(element, index) {
 
     }
 };
-// TEST
-// const arr = [2, 9, 9];
-// console.log(arr.myIndexOf(2));     // 0
-// console.log(arr.myIndexOf(7));     // -1
-// console.log(arr.myIndexOf(9, 2));  // 2
-// console.log(arr.myIndexOf(2, -1)); // -1
-// console.log(arr.myIndexOf(2, -3)); // 0
 
 // PUSH //
 Array.prototype.myPush = function(...args) {

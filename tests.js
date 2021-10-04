@@ -44,8 +44,18 @@ console.log(every_arr.every(isBelowThreshold));    // expected output: true
 // myReduce
 // used test from developer.mozilla.org
 
-const array1 = [1, 2, 3, 4];
+const reduce_arr = [1, 2, 3, 4];
 const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
-console.log(array1.reduce(reducer));    // 1 + 2 + 3 + 4 =1 0
-console.log(array1.reduce(reducer, 5)); // 5 + 1 + 2 + 3 + 4 = 15
+console.log(reduce_arr.reduce(reducer));    // 1 + 2 + 3 + 4 =1 0
+console.log(reduce_arr.reduce(reducer, 5)); // 5 + 1 + 2 + 3 + 4 = 15
+
+// myIndexOf
+// used test from developer.mozilla.org
+const indexOf_arr = [2, 9, 9];
+
+console.log(indexOf_arr.myIndexOf(2));     // 0
+console.log(indexOf_arr.myIndexOf(7));     // -1
+console.log(indexOf_arr.myIndexOf(9, 2));  // 2
+console.log(indexOf_arr.myIndexOf(2, -1)); // -1
+console.log(indexOf_arr.myIndexOf(2, -3)); // 0
