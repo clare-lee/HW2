@@ -117,29 +117,6 @@ Array.prototype.myIncludes = function(element, index) {
         }
     }
 };
-// TEST
-// const arr1 = [1, 2, 3];
-// const arr2 = [1, 2, NaN];
-// const arr3 = ["1", "2", "3"];
-// const arr4 = ['a', 'b', 'c'];
-
-// // reg examples
-// console.log(arr1.myIncludes(2))         // true
-// console.log(arr1.myIncludes(4))         // false
-// console.log(arr1.myIncludes(3, 3))      // false
-// console.log(arr1.myIncludes(3, -1))     // true     
-// console.log(arr2.myIncludes(NaN))       // true     error Can't seem to fix this no matter what
-// console.log(arr3.myIncludes(3))         // false
-// console.log('........')
-// // fromIndex is greater than or equal to the array length
-// console.log(arr4.myIncludes('c', 3))    // false
-// console.log(arr4.myIncludes('c', 100))  // false
-// console.log('........')
-// // Computed index is negative
-// console.log(arr4.myIncludes('a', -100)) // true
-// console.log(arr4.myIncludes('b', -100)) // true
-// console.log(arr4.myIncludes('c', -100)) // true
-// console.log(arr4.myIncludes('a', -2))   // false    
 
 // INDEXOF //
 Array.prototype.myIndexOf = function(element, index) {

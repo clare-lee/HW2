@@ -50,6 +50,32 @@ const reducer = (previousValue, currentValue) => previousValue + currentValue;
 console.log(reduce_arr.reduce(reducer));    // 1 + 2 + 3 + 4 =1 0
 console.log(reduce_arr.reduce(reducer, 5)); // 5 + 1 + 2 + 3 + 4 = 15
 
+// myIncludes
+// used test from developer.mozilla.org
+
+const includes_arr1 = [1, 2, 3];
+const includes_arr2 = [1, 2, NaN];
+const includes_arr3 = ["1", "2", "3"];
+const includes_arr4 = ['a', 'b', 'c'];
+
+// reg examples
+console.log(includes_arr1.myIncludes(2))         // true
+console.log(includes_arr1.myIncludes(4))         // false
+console.log(includes_arr1.myIncludes(3, 3))      // false
+console.log(includes_arr1.myIncludes(3, -1))     // true     
+console.log(includes_arr2.myIncludes(NaN))       // true     error Can't seem to fix this no matter what
+console.log(includes_arr3.myIncludes(3))         // false
+console.log('........')
+// fromIndex is greater than or equal to the array length
+console.log(includes_arr4.myIncludes('c', 3))    // false
+console.log(includes_arr4.myIncludes('c', 100))  // false
+console.log('........')
+// Computed index is negative
+console.log(includes_arr4.myIncludes('a', -100)) // true
+console.log(includes_arr4.myIncludes('b', -100)) // true
+console.log(includes_arr4.myIncludes('c', -100)) // true
+console.log(includes_arr4.myIncludes('a', -2))   // false    
+
 // myIndexOf
 // used test from developer.mozilla.org
 const indexOf_arr = [2, 9, 9];
