@@ -194,10 +194,6 @@ Array.prototype.myPush = function(...args) {
     }
     return this.length;
 };
-// TEST
-// var arr = [1,2,3];
-// console.log(arr.myPush(4,5,6)); // 6
-// console.log(arr)                // [1, 2, 3, 4, 5, 6]
 
 // LASTINDEXOF //
 Array.prototype.myLastIndexOf = function(element, index) {
