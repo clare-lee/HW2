@@ -24,3 +24,12 @@ console.log( filter_arrr.myFilter(function(callbackFn) {return callbackFn.length
 
 console.log("Filter: ")
 console.log( filter_arrr.filter(function(callbackFn) {return callbackFn.length < 8;}) )
+
+// mySome
+const some_arr =['bibibibibibibib', 'jgj', 'kmijnuhjhgfdb']
+
+console.log("mySome: ")
+console.log( some_arr.mySome(function(callbackFn) {return callbackFn.length < 8;}) )
+
+console.log("Some: ")
+console.log( some_arr.some(function(callbackFn) {return callbackFn.length < 8;}) )
