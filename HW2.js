@@ -232,14 +232,6 @@ Array.prototype.myLastIndexOf = function(element, index) {
         }
     }
 };
-// TEST
-// const arr1 = [2, 5, 9, 2];
-// console.log(arr1.myLastIndexOf(2));         // 3
-// console.log(arr1.myLastIndexOf(7));         // -1
-// console.log(arr1.myLastIndexOf(2, 3));      // 3
-// console.log(arr1.myLastIndexOf(2, 2));      // 0
-// console.log(arr1.myLastIndexOf(2, -2));     // 0
-// console.log(arr1.myLastIndexOf(2, -1));     // 3
 
 // KEYS //
 Object.grabKeys = function(obj) {

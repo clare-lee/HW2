@@ -66,3 +66,14 @@ console.log(indexOf_arr.myIndexOf(2, -3)); // 0
 var push_arr = [1,2,3];
 console.log(push_arr.myPush(4,5,6)); // 6
 console.log(push_arr)                // [1, 2, 3, 4, 5, 6]
+
+// myLastIndexOf
+// used test from developer.mozilla.org
+
+const arr1 = [2, 5, 9, 2];
+console.log(arr1.myLastIndexOf(2));         // 3
+console.log(arr1.myLastIndexOf(7));         // -1
+console.log(arr1.myLastIndexOf(2, 3));      // 3
+console.log(arr1.myLastIndexOf(2, 2));      // 0
+console.log(arr1.myLastIndexOf(2, -2));     // 0
+console.log(arr1.myLastIndexOf(2, -1));     // 3
