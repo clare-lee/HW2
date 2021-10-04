@@ -42,6 +42,7 @@ Array.prototype.mySome = function(callbackFn) {
 // some((element) => { ... } )
 // some((element, index) => { ... } )
 // some((element, index, array) => { ... } )
+
     for (let i = 0; i < this.length; i++) {
         if ( callbackFn(this[i], i, this) ) {
             return true;
@@ -49,14 +50,6 @@ Array.prototype.mySome = function(callbackFn) {
     }
     return false;
 };
-// TEST
-// const exArr =['bibibibibibibib', 'jgj', 'kmijnuhjhgfdb']
-
-// console.log("mySome: ")
-// console.log( exArr.mySome(function(callbackFn) {return callbackFn.length < 8;}) )
-
-// console.log("Some: ")
-// console.log( exArr.some(function(callbackFn) {return callbackFn.length < 8;}) )
 
 // EVERY //
 Array.prototype.myEvery = function(callbackFn) {
