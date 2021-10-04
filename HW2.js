@@ -36,14 +36,6 @@ Array.prototype.myFilter = function(callbackFn) {
     }
     return arr;
 };
-// TEST
-// const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
-
-// console.log("myFilter: ")
-// console.log( exArr.myFilter(function(callbackFn) {return callbackFn.length < 8;}) )
-
-// console.log("Filter: ")
-// console.log( exArr.filter(function(callbackFn) {return callbackFn.length < 8;}) )
 
 // SOME //
 Array.prototype.mySome = function(callbackFn) {
