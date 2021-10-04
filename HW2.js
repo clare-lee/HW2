@@ -22,13 +22,6 @@ Array.prototype.myMap = function(callbackFn) {
     }
     return arr;
 };
-// TEST
-// const exArr =['bibi', 'jhgfghj', 'kmijnuhb']
-
-// console.log("myMap: ")
-// console.log( exArr.myMap(function(callbackFn) {return callbackFn;}) )
-// console.log("Map: ")
-// console.log( exArr.map(function(callbackFn) {return callbackFn;}) )
 
 // FILTER //
 Array.prototype.myFilter = function(callbackFn) {
